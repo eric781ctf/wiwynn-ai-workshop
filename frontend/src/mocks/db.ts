@@ -1,6 +1,31 @@
 export type Role = "admin" | "user";
 export type VehicleStatus = "available" | "in_use" | "maintenance";
 
+export type ActivityAction =
+  | "auth.login"
+  | "auth.logout"
+  | "vehicle.created"
+  | "vehicle.updated"
+  | "vehicle.deleted"
+  | "vehicle.unassigned"
+  | "employee.created"
+  | "employee.updated"
+  | "employee.deleted";
+
+export type ActivityResource = "auth" | "vehicle" | "employee";
+
+export interface ActivityLog {
+  id: string;
+  timestamp: string;
+  actorId: string;
+  actorName: string;
+  action: ActivityAction;
+  resource: ActivityResource;
+  targetId: string | null;
+  targetLabel: string;
+  summary: string;
+}
+
 export interface User {
   id: string;
   username: string;
@@ -32,6 +57,7 @@ export interface MockDB {
   users: User[];
   vehicles: Vehicle[];
   employees: Employee[];
+  activityLogs: ActivityLog[];
 }
 
 const STORAGE_KEY = "vms.mock-db.v1";
@@ -62,7 +88,18 @@ function loadFromStorage(): MockDB | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as MockDB;
+    const parsed = JSON.parse(raw) as Partial<MockDB>;
+    if (!parsed.users || !parsed.vehicles || !parsed.employees) return null;
+    let migrated = false;
+    if (!Array.isArray(parsed.activityLogs)) {
+      parsed.activityLogs = [];
+      migrated = true;
+    }
+    const result = parsed as MockDB;
+    if (migrated) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+    }
+    return result;
   } catch {
     return null;
   }
@@ -73,6 +110,7 @@ function createSeed(): MockDB {
     users: structuredClone(seedUsers),
     vehicles: structuredClone(seedVehicles),
     employees: structuredClone(seedEmployees),
+    activityLogs: [],
   };
 }
 
@@ -91,6 +129,7 @@ export function resetDb() {
   db.users = fresh.users;
   db.vehicles = fresh.vehicles;
   db.employees = fresh.employees;
+  db.activityLogs = fresh.activityLogs;
   persist();
 }
 
