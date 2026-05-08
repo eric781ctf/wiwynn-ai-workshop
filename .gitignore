@@ -1,3 +1,45 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
 .env
+.env.local
+.env.*.local
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Editor / IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# OS
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Claude Code 個人本機設定（每位開發者的 allow / deny 清單不同）
+# 注意：.claude/ 其餘檔案（commands、hooks、skills、settings.json）皆要進版控
+.claude/settings.local.json
+
+# 以下為刻意「不」忽略，留作備忘：
+#   .claude/        團隊共用的 Claude Code 設定與 Skills
+#   openspec/       規格驅動開發的設定與 spec 檔
+#   .agents/ 等其他 AI 代理目錄  專案 Skill 與其他工具的鏡像

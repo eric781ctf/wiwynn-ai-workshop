@@ -26,6 +26,12 @@ export default [
     },
   },
   {
-    ignores: ["node_modules/", "coverage/"],
+    ignores: [
+      "**/node_modules/",
+      "**/dist/",
+      "**/build/",
+      "coverage/",
+      "frontend/",
+    ],
   },
 ];

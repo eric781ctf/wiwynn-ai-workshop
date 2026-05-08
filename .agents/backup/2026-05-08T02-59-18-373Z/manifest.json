@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "createdAt": "2026-05-08T02:59:19.957Z",
+  "scope": "project",
+  "operation": "change-to-agents",
+  "entries": [
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.agents\\commands",
+      "kind": "dir",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.claude\\commands",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.factory\\commands",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.codex\\prompts",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.opencode\\commands",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.cursor\\commands",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.gemini\\commands",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.agent\\workflows",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.agents\\hooks",
+      "kind": "dir",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.claude\\hooks",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.factory\\hooks",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.claude\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.factory\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.codex\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.opencode\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.cursor\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.gemini\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.agent\\skills",
+      "kind": "symlink",
+      "action": "create"
+    },
+    {
+      "originalPath": "C:\\Users\\11404669\\Desktop\\Claude-Tutorial\\wiwynn-ai-workshop\\.github\\skills",
+      "kind": "symlink",
+      "action": "create"
+    }
+  ]
+}

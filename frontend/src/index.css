@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 99%;
+    --foreground: 240 10% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 6%;
+    --primary: 262 80% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 12%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 262 60% 96%;
+    --accent-foreground: 262 70% 30%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 262 80% 56%;
+    --radius: 0.75rem;
+
+    /* Brand gradient palette */
+    --brand-1: 262 83% 58%;
+    --brand-2: 296 84% 66%;
+    --brand-3: 199 89% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  /* ===== Gradient text ===== */
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--brand-1)) 0%,
+      hsl(var(--brand-2)) 60%,
+      hsl(var(--brand-3)) 100%
+    );
+  }
+
+  /* ===== App background — soft radial blobs ===== */
+  .bg-app-aurora {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(60rem 32rem at 10% -10%, hsl(var(--brand-1) / 0.18), transparent 60%),
+      radial-gradient(48rem 28rem at 110% 10%, hsl(var(--brand-3) / 0.18), transparent 55%),
+      radial-gradient(40rem 28rem at 50% 120%, hsl(var(--brand-2) / 0.12), transparent 60%);
+  }
+
+  /* ===== Animated grid pattern (CSS-only) ===== */
+  .bg-grid-fade {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.6) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.6) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 40%, transparent 75%);
+  }
+
+  /* ===== Glow card ===== */
+  .glow-card {
+    position: relative;
+  }
+  .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--brand-1) / 0.7),
+      hsl(var(--brand-2) / 0.4) 50%,
+      hsl(var(--brand-3) / 0.6)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ===== Shimmer button (Magic UI style) ===== */
+  .shimmer-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shimmer-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+  .shimmer-btn:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* ===== Border-beam style soft ring on focus ===== */
+  .ring-glow:focus-within {
+    box-shadow: 0 0 0 4px hsl(var(--brand-1) / 0.18);
+  }
+
+  /* ===== KPI accent helpers ===== */
+  .accent-violet {
+    --kpi: 262 83% 58%;
+  }
+  .accent-emerald {
+    --kpi: 158 64% 52%;
+  }
+  .accent-sky {
+    --kpi: 199 89% 60%;
+  }
+  .accent-amber {
+    --kpi: 38 92% 56%;
+  }
+
+  /* ===== Floating blob (login background) ===== */
+  @keyframes float-slow {
+    0%, 100% { transform: translate3d(0,0,0) scale(1); }
+    50%      { transform: translate3d(20px,-10px,0) scale(1.05); }
+  }
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.55;
+    animation: float-slow 9s ease-in-out infinite;
+  }
+}

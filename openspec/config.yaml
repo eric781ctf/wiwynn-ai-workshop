@@ -1,0 +1,78 @@
+schema: spec-driven
+
+# Project context shown to AI when creating artifacts.
+context: |
+  Project: Wiwynn "Build with AI" workshop repo. Two unrelated codebases live side by side
+  plus a shared library of agent skills mirrored across many AI tools.
+
+  Tech stack
+    Root (Node.js sandbox):
+      - Node >= 20, ESM ("type": "module") — imports use ".js" extensions
+      - Jest via --experimental-vm-modules for ESM tests
+      - ESLint flat config with rules: no-var, prefer-const, no-unused-vars,
+        no-console (warn), eqeqeq, no-undef
+      - Husky pre-commit hook runs lint + Jest in parallel
+    Frontend (frontend/ — vehicle management MVP):
+      - React 19 + TypeScript + Vite
+      - Tailwind CSS + shadcn-style components on Radix UI primitives
+      - React Router v7 with role-based guards (RequireAuth / RequireRole)
+      - React Hook Form + Zod for form validation
+      - Recharts for charts, Sonner for toasts
+      - MSW v2 mocks the backend in dev; in-memory DB persisted to localStorage
+        under key "vms.mock-db.v1"
+      - lib/api-client.ts is the single fetch wrapper (auto-attaches bearer token,
+        throws ApiError) — features call into it rather than fetch directly
+      - Auth tokens are NOT verified by the mock layer; treat auth as fake until a
+        real backend lands
+
+  Domain
+    Vehicle Management System (VMS) MVP. Two roles: admin and user.
+    - admin: full access including employee CRUD
+    - user: dashboard + vehicle CRUD only (no /employees access)
+    Default credentials: admin/admin123 and user/user123.
+    Cascade: deleting an employee nulls vehicle.assignedTo for their vehicles —
+    any real-backend port must replicate this.
+
+  Existing capabilities (in openspec/specs/)
+    auth, dashboard, employee-management, mock-api, vehicle-management
+
+  Conventions
+    - Specs are written in Traditional Chinese (zh-TW). Keep that language for
+      spec.md content; English is fine for code, file names, and identifiers.
+    - Requirement format: "系統 SHALL …" with Scenario blocks using
+      WHEN / THEN / AND in bold. Match the style in existing spec.md files.
+    - Conventional commits: feat / fix / chore / docs / refactor with an optional
+      scope, e.g. feat(echo): … — commit body may be in zh-TW.
+    - Skills live in .agents/skills/ (source of truth) and are mirrored to
+      .agent/, .claude/, .codex/, .cursor/, .factory/, .gemini/, .github/,
+      .opencode/. A skill change must update the source AND the mirrors the
+      target audience uses.
+    - The "broken on purpose" files in src/skills/ (echo.js, echo.test.js) are
+      teaching material — do not silently fix them in change proposals unless the
+      change is explicitly about replacing the exercise.
+
+# Per-artifact rules
+rules:
+  proposal:
+    - State the user-facing behaviour change in the first paragraph; defer
+      implementation detail to the design artifact.
+    - Always include a "Non-goals" section so scope is unambiguous.
+    - Call out which existing capability spec(s) the change touches by name.
+  spec:
+    - Use Traditional Chinese for prose; keep field names, route paths, and code
+      identifiers in English (e.g. plateNo, /api/vehicles).
+    - Every Requirement starts with "系統 SHALL …" and is followed by at least
+      one Scenario with WHEN / THEN steps.
+    - When a requirement implies an HTTP call, name the exact method + path
+      (e.g. POST /api/vehicles) so the mock-api spec can be cross-checked.
+  tasks:
+    - Break work into chunks no larger than ~2 hours of focused effort.
+    - Each task names the file(s) it will touch; vague tasks ("update frontend")
+      are not acceptable.
+    - Tasks that change cross-cutting behaviour (auth, api-client, mock DB) must
+      list the downstream capabilities that need re-verification.
+  design:
+    - Note any deviation from the existing api-client.ts / MSW handler patterns
+      and justify it.
+    - Flag changes that would break the localStorage shape ("vms.mock-db.v1",
+      "vms.token", "vms.user") since users carry data across dev sessions.
