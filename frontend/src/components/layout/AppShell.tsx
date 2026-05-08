@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { LayoutDashboard, Car, Users, LogOut, Sparkles } from "lucide-react";
+import { LayoutDashboard, Car, Users, ScrollText, LogOut, Sparkles } from "lucide-react";
 import { useAuth } from "@/features/auth/AuthContext";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,6 +15,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "儀表板", icon: LayoutDashboard },
   { to: "/vehicles", label: "車輛管理", icon: Car },
   { to: "/employees", label: "員工管理", icon: Users, adminOnly: true },
+  { to: "/activity-logs", label: "操作紀錄", icon: ScrollText, adminOnly: true },
 ];
 
 export function AppShell() {

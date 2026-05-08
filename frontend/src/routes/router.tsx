@@ -5,6 +5,7 @@ import { LoginPage } from "@/pages/LoginPage";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { VehiclesPage } from "@/pages/VehiclesPage";
 import { EmployeesPage } from "@/pages/EmployeesPage";
+import { ActivityLogsPage } from "@/pages/ActivityLogsPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 
 export const router = createBrowserRouter([
@@ -22,7 +23,10 @@ export const router = createBrowserRouter([
           { path: "vehicles", element: <VehiclesPage /> },
           {
             element: <RequireRole role="admin" />,
-            children: [{ path: "employees", element: <EmployeesPage /> }],
+            children: [
+              { path: "employees", element: <EmployeesPage /> },
+              { path: "activity-logs", element: <ActivityLogsPage /> },
+            ],
           },
           { path: "*", element: <NotFoundPage /> },
         ],
